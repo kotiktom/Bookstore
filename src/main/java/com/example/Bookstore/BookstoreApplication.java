@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.Bookstore.domain.Book;
 import com.example.Bookstore.domain.BookRepository;
+import com.example.Bookstore.domain.Category;
+import com.example.Bookstore.domain.CategoryRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,20 +25,17 @@ public class BookstoreApplication {
 
 	
 	@Bean
-	public CommandLineRunner studentDemo(BookRepository repository) {
+	public CommandLineRunner studentDemo(CategoryRepository crepository, BookRepository repository) {
 		return (args) -> {
-			log.info("save a couple of students");
-			repository.save(new Book("John Johnson", "Java for beginners",  (long) 123515131, 15.50));
-			repository.save(new Book("Pete Maukkaunen", "How to use Java",  (long) 312535, 11.50));
-			repository.save(new Book("Juha Petterinen", "Guides to Java",  (long) 643757, 10.50));
-			repository.save(new Book("Jaakko Jokela", "Intresting youtube videos", (long) 732235, 25.50));
 			
+			crepository.save(new Category("Science"));
+			crepository.save(new Category("Classics"));
+			crepository.save(new Category("Entertainment"));
 			
-			log.info("fetch all students");
-			for (Book book : repository.findAll()) {
-				log.info(book.toString());
-			}
-
+			repository.save(new Book("Michael Jackson", "How to yell really loud","123423423423", 22.60, crepository.findByName("Science").get(0)));
+			repository.save(new Book("Linus Torvalds", "How to make people hate servers","124124123", 23.00, crepository.findByName("Entertainment").get(0)));
+			repository.save(new Book("Kimi Räikkönen", "Ice ice baby", "12312344123", 50.32, crepository.findByName("Classics").get(0)));
+			
 		};
 	}
 }

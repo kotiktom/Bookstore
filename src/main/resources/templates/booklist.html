@@ -16,17 +16,17 @@
 		    <th>ISBN</th>
 		    <th>Price</th>
 		    <th>ID</th>
+		    <th>Category</th>
 		    
-    	<tr th:each = "book : ${books}">    
-		<td th:text="${book.title}"> <button>onClick=""</button></td>
+    	<tr th:each = "book: ${books}">    
+		<td th:text="${book.title}"></td>
 		<td th:text="${book.author}"></td>
-		<td th:text="${book.isbn}"></td>
+		<td th:text="${book.ISBN}"></td>
 		<td th:text="${book.price}"></td>
 		<td th:text="${book.id}"></td>
+		<td th:text="${book.category.name}"></td>
 		<td> <button type="button" class="btn btn-danger" > <a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></button></td> 
-		<td> <button type="button" class="btn btn-danger" > <a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></button></td>
-	
-			
+		<td> <button type="button" class="btn btn-danger" > <a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></button></td>	
     	</tr>
      </table>
     <button type="button" class="btn btn-success"> <a href = "/add">Add a new book </a> </button>
