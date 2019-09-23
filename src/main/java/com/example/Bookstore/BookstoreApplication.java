@@ -10,6 +10,8 @@ import com.example.Bookstore.domain.Book;
 import com.example.Bookstore.domain.BookRepository;
 import com.example.Bookstore.domain.Category;
 import com.example.Bookstore.domain.CategoryRepository;
+import com.example.Bookstore.domain.User;
+import com.example.Bookstore.domain.UserRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +27,12 @@ public class BookstoreApplication {
 
 	
 	@Bean
-	public CommandLineRunner studentDemo(CategoryRepository crepository, BookRepository repository) {
+	public CommandLineRunner studentDemo(CategoryRepository crepository, BookRepository repository, UserRepository urepository) {
 		return (args) -> {
+			
+			User user1 = new User("user", "user1@outlook.com" , "C7CDE2FCF51F5448B414BDCB473CBD29C9B6A8A7A5C01470208BACAF84FC2AD7", "USER");
+			User user2 = new User("admin", "user2@outlook.com", "FE02F102634DF0669CEB26B8A39837A59A041EC1C345802AF5B11BA8EB0CFF83", "ADMIN");
+			
 			
 			crepository.save(new Category("Science"));
 			crepository.save(new Category("Classics"));

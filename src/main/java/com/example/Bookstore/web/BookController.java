@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.boot.web.reactive.error.ErrorAttributes;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.Bookstore.domain.Book;
 import com.example.Bookstore.domain.BookRepository;
 import com.example.Bookstore.domain.CategoryRepository;
+import com.example.Bookstore.domain.User;
 
 @Controller
 public class BookController {
@@ -24,6 +29,13 @@ public class BookController {
 	
 	@Autowired
 	private CategoryRepository crepository; 
+		
+	
+	 @RequestMapping(value="/login")
+	    public String login() {	
+	        return "login";
+	    }
+	
 	
 	@RequestMapping(value = "/booklist", method = RequestMethod.GET)
 	public String BookList(Model model) {
@@ -44,8 +56,9 @@ public class BookController {
 		
 	 }
 	
-	 
+
 	@RequestMapping(value = "/add")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String AddBook(Model model) {
 		model.addAttribute("book", new Book());
 		model.addAttribute("categories", crepository.findAll());
@@ -60,6 +73,7 @@ public class BookController {
 		}
 	
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteStudent(@PathVariable("id") Long id, Model model) {
     	repository.deleteById(id);
         return "redirect:../booklist";
@@ -71,10 +85,10 @@ public class BookController {
     	model.addAttribute("categories", crepository.findAll());
     	return "addbook";
     }
-        
-   
-    	
+    
+  
 }
+    
 
 
 
