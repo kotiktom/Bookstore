@@ -30,9 +30,10 @@ public class BookstoreApplication {
 	public CommandLineRunner studentDemo(CategoryRepository crepository, BookRepository repository, UserRepository urepository) {
 		return (args) -> {
 			
-			User user1 = new User("user", "user1@outlook.com" , "C7CDE2FCF51F5448B414BDCB473CBD29C9B6A8A7A5C01470208BACAF84FC2AD7", "USER");
-			User user2 = new User("admin", "user2@outlook.com", "FE02F102634DF0669CEB26B8A39837A59A041EC1C345802AF5B11BA8EB0CFF83", "ADMIN");
-			
+			User user1 = new User("user","$2a$06$iWJkiUp6tTCfxItYgjfp3e5z2SgYd4GKky0JENTlJq97gCVkAkV0C", "USER", "USER");
+			User user2 = new User("admin","$2a$10$8rP7/WkSlx8GgardAjs6VO9bRixzgi1NW5Ud6/lkfKetBYWUrbCpS", "ADMIN", "ADMIN");
+			urepository.save(user1);
+			urepository.save(user2);
 			
 			crepository.save(new Category("Science"));
 			crepository.save(new Category("Classics"));

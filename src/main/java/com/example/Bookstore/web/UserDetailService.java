@@ -1,4 +1,4 @@
-package com.example.Bookstore;
+package com.example.Bookstore.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;

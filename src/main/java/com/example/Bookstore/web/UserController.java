@@ -1,4 +1,4 @@
-package com.example.Bookstore;
+package com.example.Bookstore.web;
 
 import javax.validation.Valid;
 
