@@ -39,6 +39,7 @@ public class BookstoreApplication {
 			crepository.save(new Category("Classics"));
 			crepository.save(new Category("Entertainment"));
 			
+			repository.save(new Book("John", "Johnson","123423423423", 22.60, crepository.findByName("Science").get(0)));
 			repository.save(new Book("Michael Jackson", "How to yell really loud","123423423423", 22.60, crepository.findByName("Science").get(0)));
 			repository.save(new Book("Linus Torvalds", "How to make people hate servers","124124123", 23.00, crepository.findByName("Entertainment").get(0)));
 			repository.save(new Book("Kimi Räikkönen", "Ice ice baby", "12312344123", 50.32, crepository.findByName("Classics").get(0)));
